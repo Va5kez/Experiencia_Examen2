@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Libros Dot Com</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+
+  <!-- Navigation -->
+
+    <nav class="navbar navbar-light" role="navigation">
+        <% if current_author %>
+      <a class="navbar-brand">Libros Dot Com - <%= current_author.name %> </a>
+      <%else%>
+        <a class="navbar-brand">Libros Dot Com </a>
+      <% end%>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+          <%= link_to "Home", root_path %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Libros", books_path %>
+        </li>
+
+        <% if current_author %>
+
+        <li class="nav-item">
+          <%= link_to "Mis Libros", book_author_path(current_author.id) %>
+        </li>
+
+        <li class="nav-item" style="padding-right: 130px">
+          <%= link_to "Log Out", logout_path, data: {method: :delete} %>
+        </li>
+
+        <% else%>
+
+        <li class="nav-item">
+          <%= link_to "Sign In", login_path %>
+        </li>
+
+        <li class="nav-item" style="padding-right: 130px">
+          <%= link_to "Sign Up", new_author_path %>
+        </li>
+
+        <%end%>
+
+      </ul>
+
+    </nav>
+
+  <div align= "center" class="wrapper">
+    <body background = "https://files.graphiq.com/2307/media/images/Light_Gray_429810_i0.png">
+    <%= yield %>
+  </div>
+  <footer class="footer" >
+	<div class="container">
+		<p class="text-muted">© 2017 Experiencia de Usuario</p>
+	</div>
+</footer>
+
+
+</body>
+</html>

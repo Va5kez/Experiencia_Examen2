@@ -1,0 +1,44 @@
+<h1>Edit Book</h1>
+<p> <em> Ingrese los datos necesarios: </em> </p>
+
+<% if @book.errors.any? %>
+  <div>
+    Por favor corrija los siguientes problemas:
+    <ul>
+      <% @book.errors.full_messages.each do |m| %>
+        <li>
+          <%= m %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @book do |f| %>
+<div>
+  <p>
+    <%= f.label :title, "Titulo"%>
+    <%= f.text_field :title%>
+  </p>
+
+  <p>
+    <%= f.label :description%>
+    <%= f.text_field :description%>
+  </p>
+
+  <p>
+    <%= f.label :price%>
+    <%= f.number_field :price%>
+  </p>
+
+  <p>
+    <%= f.label :category%>
+    <%= f.select :category, Book.categories %>
+  </p>
+
+  <p>
+    <%= f.submit "Actualizar", class:"btn btn-default btn-lg" %>
+    <%= link_to "Cancelar", book_author_path(current_author.id), class:"btn btn-default btn-lg" %>
+  </p>
+</div>
+<% end %>

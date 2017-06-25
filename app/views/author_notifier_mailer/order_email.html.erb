@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @author.name %>, You have made a new order!</h1>
+    <p>Book: <%=Book.find_by(id: @order.book_id).title%></p>
+    <p>Quantity: <%=@order.quantity%></p>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<% if orders.any? %>
+	<div>
+		<h2>Orders: </h2>
+		<table class="table table-hover" style="width: 800px; text-align: center">
+			<thead>
+				<tr>
+					<th style="text-align: center">ID</th>
+					<th style="text-align: center">Cliente</th>
+					<th style="text-align: center">Total</th>
+					<th style="text-align: center">Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%= render orders %>
+			</tbody>
+		</table>
+	</div>
+<% else %>
+	<p style="font-size: 30px"><em>No hay ordenes por el momento</em></p>
+<% end %>

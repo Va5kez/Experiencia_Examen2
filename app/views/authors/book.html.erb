@@ -1,0 +1,32 @@
+<h1>List of Books</h1>
+
+<% if flash[:notice] %>
+	<div>
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<table class="table table-hover" style="width: 900px; text-align: center">
+	<thead>
+		<tr>
+			<th style="text-align: center">Autor</th>
+			<th style="text-align: center">Titulo</th>
+			<th style="text-align: center">Categoria</th>
+			<th style="text-align: center">Precio</th>
+			<th style="text-align: center">Cantidad Disponible</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%- @books.each do |cr| %>
+			<tr>
+				<td><%= Author.find_by(id: cr.author_id).name %></td>
+				<td><%= link_to cr.title, book_path(cr) %></td>
+				<td><%= cr.category %></td>
+				<td> Lps. <%= cr.price %></td>
+				<td><%= cr.quantities %></td>
+			</tr>
+		<%- end %>
+	</tbody>
+</table>
+
+<p> <%= link_to "New Book", new_book_path%> </p>

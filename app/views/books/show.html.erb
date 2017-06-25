@@ -1,0 +1,79 @@
+<div class="container ">
+	<div class="row">
+       <div class="col-md-8 col-md-offset-2 ">
+
+<div class="panel panel-default">
+  <div class="panel-heading">  <h4 >Book Info</h4></div>
+   <div class="panel-body">
+
+    <div class="box box-info">
+
+            <div class="box-body">
+                     <div class="col-sm-6">
+                     <div  align="center"> <img alt="User Pic" src="http://vignette1.wikia.nocookie.net/mlp/images/9/92/Canterlot_Castle_book.png/revision/latest?cb=20120601192328"  class="img-circle img-responsive" width="150px">
+                     </div>
+
+              <br>
+
+              <!-- /input-group -->
+            </div>
+            <div class="col-sm-6"><br><br>
+            <h4 style="color:#00b1b1;"><%= @book.title %></h4></span>
+            </div>
+            <div class="clearfix"></div>
+            <hr style="margin:5px 0 5px 0;">
+
+
+<div class="col-sm-5 col-xs-6 tital " >ID:</div>
+<div class="col-sm-7 col-xs-6 "><strong><%= @book.id %></strong></div>
+     <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Titulo:</div>
+<div class="col-sm-7">  <strong><%= @book.title %></strong></div>
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Descripcion:</div>
+<div class="col-sm-7">   <strong><%= @book.description %></strong></div>
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Precio:</div>
+<div class="col-sm-7">  <strong><%= @book.price %></strong></div>
+
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Categoria:</div>
+<div class="col-sm-7">  <strong><%= @book.category %></strong></div>
+
+  <div class="clearfix"></div>
+<div class="bot-border"></div>
+
+<div class="col-sm-5 col-xs-6 tital " >Total Vendido:</div>
+<div class="col-sm-7"> <strong>Lps. <%= total_ordenes(@book.orders) %></strong></div>
+
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+
+    </div>
+    </div>
+</div>
+   </div>
+</div>
+
+<% if current_author == Author.find_by(id: @book.author_id) %>
+  <p> <%= link_to "Edit", edit_book_path(@book.id)%> </p>
+	<p> <%= link_to "Borrar", book_path(@book.id), method: :delete%> </p>
+<% end %>
+<p> <%= link_to "New Order", new_book_order_path(@book.id)%> </p>
+<%= render partial: "book_orders", locals: {orders: @book.orders} %>
+
+
+
+<% unless @book.orders.any? %>
+<!--<p> <%= link_to "Borrar", book_path(@book.id), method: :delete%> </p>-->
+<% end %>
